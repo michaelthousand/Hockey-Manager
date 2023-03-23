@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my installed apps below
     'rostermanager',
-    'notes',
 ]
 
 MIDDLEWARE = [

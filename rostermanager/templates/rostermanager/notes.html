@@ -10,13 +10,7 @@
 
 
 {% block content %}
-<p>Enter your notes below:</p>
-<form method="post" action="{% url 'add_note' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-  </form>
-
+<a href="{% url 'createnote' %}">Add Note</a>
 <table>
     {% for note in object_list %}
         <tr>

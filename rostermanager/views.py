@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Player, Season
-from .forms import PlayerForm, SeasonForm
+from .models import Player, Season, Note
+from .forms import PlayerForm, SeasonForm, NoteForm
 from django.views.generic import ListView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import Http404, HttpResponse
@@ -109,3 +109,28 @@ def save_lineup(request):
         return JsonResponse({'success': True})
     else:
         return JsonResponse({'success': False})
+
+# Allow the user to view their roster notes
+class ViewNotes(LoginRequiredMixin, ListView):
+    model = Note
+    template_name = "rostermanager/notes.html"
+    context_object_name = 'notes'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(user=self.request.user)
+        return queryset
+
+class CreateNote(LoginRequiredMixin, CreateView):
+    model = Note
+    form_class = NoteForm
+    template_name = "rostermanager/add_note.html"
+    success_url = reverse_lazy('roster_notes')
+
+    def form_valid(self, form):
+        # Check if there are any other validation errors on the form
+        if form.errors:
+            return self.form_invalid(form)
+        
+        form.instance.user = self.request.user
+        return super().form_valid(form)

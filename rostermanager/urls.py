@@ -9,6 +9,7 @@ urlpatterns = [
     path('players/<str:id>/delete/', views.DeletePlayer.as_view(), name='deleteplayer'),
     path('seasons/add', views.add_season, name='add_season'),
     path('lineup/', views.viewlineup.as_view(), name="lineup"),
-
+    path('notes/', views.ViewNotes.as_view(), name='roster_notes'),
+    path('notes/add', views.CreateNote.as_view(), name="createnote"),
     
 ]

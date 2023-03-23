@@ -38,3 +38,8 @@ class Player(models.Model):
     def __str__(self):
         return f"#{self.player_num} - {self.first_name} {self.last_name} - {self.position}\nOn roster: {self.on_roster}"
 
+class Note(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    date = models.DateField()
+    note = models.TextField(max_length=300)
+    id = str(user) + str(date)
