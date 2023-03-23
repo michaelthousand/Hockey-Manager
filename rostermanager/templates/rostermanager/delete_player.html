@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<h2>Delete Player</h2>
+<form method="post">
+    {% csrf_token %}
+  <p>Are you sure you want to permanently delete {{ object.first_name }} {{ object.last_name}} from the roster?</p>
+  <p>Note: this cannot be undone! If the player is no longer on the team but you would still like to be able to view their stats,
+    update the player to being unrostered rather than deleting them!
+  </p>
+  <input type="submit" value="Confirm" />
+</form>
+{% endblock %}

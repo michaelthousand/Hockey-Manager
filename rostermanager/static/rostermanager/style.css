@@ -1,0 +1,51 @@
+html{
+    font-size: 16px;
+}
+/*
+body{
+    background-image: linear-gradient(#000, #000000b6);
+}
+
+
+
+#roster th{
+    color:white;
+}
+
+#roster td{
+    color: white;
+}
+*/
+
+#roster{
+    width:40%;
+    text-align: left;
+    margin-bottom: 150px;
+}
+
+#roster .position{
+    font-size: 1.5rem;
+    height: 80px;
+    vertical-align: bottom;
+    padding-bottom: 15px;
+}
+
+.delete {
+    color: red;
+}
+
+.connectedSortable{
+    list-style-type: none;
+    display: flex;
+}
+
+.connectedSortable li{
+    width:200px;
+    height: 50px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+#sortable10, #sortable11, #sortable12, #sortable13{
+    display:inline-flex;
+}

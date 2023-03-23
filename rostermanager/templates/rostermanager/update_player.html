@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<h2>Update Player</h2>
+<form method="post">
+    {% csrf_token %}
+  <div>
+    {{ form.as_p }}
+    <input type="submit" value="Update" />
+  </div>
+</form>
+{% endblock %}

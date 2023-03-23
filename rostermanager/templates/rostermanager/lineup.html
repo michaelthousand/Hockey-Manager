@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head %}
+<title>Hockey Tracker - Lineup</title>
+<link rel="stylesheet" href="{% static 'rostermanager/style.css' %}">
+
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
+{% endblock %}
+
+{% block content %}
+<button id="save-lineup">Save</button>
+
+
+<ul id="sortable1" class="connectedSortable">
+    <h4>1st Line:</h4>
+</ul>
+
+<ul id="sortable2" class="connectedSortable">
+    <h4>2nd Line:</h4>
+</ul>
+
+<ul id="sortable3" class="connectedSortable">
+    <h4>3rd Line:</h4>
+</ul>
+
+<ul id="sortable4" class="connectedSortable">
+    <h4>4th Line:</h4>
+</ul>
+
+<ul id="sortable5" class="connectedSortable">
+    <h4>D1:</h4>
+</ul>
+
+<ul id="sortable6" class="connectedSortable">
+    <h4>D2:</h4>
+</ul>
+
+<ul id="sortable7" class="connectedSortable">
+    <h4>D3:</h4>
+</ul>
+
+<ul id="sortable8" class="connectedSortable">
+    <h4>G1:</h4>
+</ul>
+
+<ul id="sortable9" class="connectedSortable">
+    <h4>G2:</h4>
+</ul>
+
+
+<h3>Bench:</h3>
+
+<ul id="sortable10" class="connectedSortable bench">
+    {% for player in object_list|dictsort:"player_num" %}
+    {% if player.position == 'C' and player.on_roster == True %}
+    <li class="ui-state-default">#{{ player.player_num }} - {{ player.last_name }}</li>
+    {% endif %}
+{% endfor %}
+</ul>
+<ul id="sortable11" class="connectedSortable bench">
+    {% for player in object_list|dictsort:"player_num" %}
+    {% if player.position == 'LW' and player.on_roster == True %}
+    <li class="ui-state-default">#{{ player.player_num }} - {{ player.last_name }}</li>
+    {% endif %}
+{% endfor %}
+</ul>
+<ul id="sortable12" class="connectedSortable bench">
+    {% for player in object_list|dictsort:"player_num" %}
+    {% if player.position == 'RW' and player.on_roster == True %}
+    <li class="ui-state-default">#{{ player.player_num }} - {{ player.last_name }}</li>
+    {% endif %}
+{% endfor %}
+</ul>
+<ul id="sortable13" class="connectedSortable bench">
+    {% for player in object_list|dictsort:"player_num" %}
+    {% if player.position == 'LD' and player.on_roster == True %}
+    <li class="ui-state-default">#{{ player.player_num }} - {{ player.last_name }}</li>
+    {% endif %}
+{% endfor %}
+</ul>
+<ul id="sortable14" class="connectedSortable bench">
+    {% for player in object_list|dictsort:"player_num" %}
+    {% if player.position == 'RD' and player.on_roster == True %}
+    <li class="ui-state-default">#{{ player.player_num }} - {{ player.last_name }}</li>
+    {% endif %}
+{% endfor %}
+</ul>
+<ul id="sortable15" class="connectedSortable bench">
+    {% for player in object_list|dictsort:"player_num" %}
+    {% if player.position == 'G' and player.on_roster == True %}
+    <li class="ui-state-default">#{{ player.player_num }} - {{ player.last_name }}</li>
+    {% endif %}
+{% endfor %}
+</ul>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+<script src="{% static 'rostermanager/sortable.js' %}"></script>
+
+<!--To save the lineup - don't know if it will work but will need to see when site is live -->
+<script>
+    $(document).ready(function() {
+      $('#save-lineup').click(function() {
+        saveLineup();
+      });
+    });
+    
+    function saveLineup() {
+        var positions = {};
+        $('#sortable1 li').each(function() {
+            positions[$(this).text()] = '1st Line';
+        });
+        $('#sortable2 li').each(function() {
+            positions[$(this).text()] = '2nd Line';
+        });
+        $('#sortable3 li').each(function() {
+            positions[$(this).text()] = '3rd Line';
+        });
+        $('#sortable4 li').each(function() {
+            positions[$(this).text()] = '4th Line';
+        });
+        $('#sortable5 li').each(function() {
+            positions[$(this).text()] = 'D1';
+        });
+        $('#sortable6 li').each(function() {
+            positions[$(this).text()] = 'D2';
+        });
+         $('#sortable7 li').each(function() {
+            positions[$(this).text()] = 'D3';
+        });
+        $('#sortable8 li').each(function() {
+            positions[$(this).text()] = 'G1';
+        });
+        $('#sortable9 li').each(function() {
+            positions[$(this).text()] = 'G2';
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: '/save_lineup/',
+            data: JSON.stringify(positions),
+            dataType: 'json',
+            success: function(response) {
+                alert('Lineup saved successfully.');
+            },
+            error: function(xhr, status, error) {
+                alert('Error saving lineup.');
+                console.log(xhr.responseText);
+            }
+        });
+    }
+    </script>
+
+{% endblock %}

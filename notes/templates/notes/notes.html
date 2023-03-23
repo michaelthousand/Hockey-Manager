@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{%  load static %}
+
+
+{% block head %}
+<title>Hockey Manager - Notes</title>
+{% endblock %}
+
+
+
+{% block content %}
+<p>Enter your notes below:</p>
+<form method="post" action="{% url 'add_note' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+
+<table>
+    {% for note in object_list %}
+        <tr>
+            <td>{{ note.date }}</td>
+            <td>{{ note.note }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

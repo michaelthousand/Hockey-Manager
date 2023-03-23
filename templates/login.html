@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+<title>Hockey Manager - Login</title>
+<!--<link rel="stylesheet" href="{% static 'workouttracker/style.css' %}">-->
+{% endblock %}
+
+{% block content %}
+<div class="login-form">
+<h2>Please login</h2>
+  <form class="login" method="post" action="{% url 'login' %}">
+      <div>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="wo_button" type="submit" value="Login"/>
+      </div>
+  </form>
+</div>
+{% endblock %}

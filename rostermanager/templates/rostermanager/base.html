@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!--This page is for the base template the other pages will use-->
+
+
+<head>
+    <!--Tells the program to expect header information (e.g., a stylesheet)-->
+    {% block head %}
+    
+    {% endblock %}
+
+
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'add_season' %}">Start New Season</a>
+        <a href="{% url 'roster' %}">Roster</a>
+    </nav>
+    
+    <h1>Hockey Tracker App</h1> <!--This will be displayed on the top of any page that uses the base template-->
+
+    <!--Below is where any specifics for the page will be found-->
+    {% block content %}
+    {% endblock %}
+</body>

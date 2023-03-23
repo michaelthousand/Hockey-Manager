@@ -1,0 +1,23 @@
+<!-- ropster home page-->
+
+<!--Below is needed to extend the base layout-->
+{% extends 'base.html' %}
+
+{%  load static %}
+
+<!--Below is for the header information that will be pushed into the base template-->
+{% block head %}
+<title>Roster Manager - Home</title>
+<link rel="stylesheet" href="{% static 'rostermanager/style.css' %}">
+{% endblock %}
+
+
+
+{% block content %}
+    <p>This will be filled in later.</p>
+
+    <a href="{% url 'roster' %}">View Roster</a>
+    <a href="{% url 'lineup' %}">Set Lineup</a>
+
+
+{% endblock %}
