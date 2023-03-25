@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my installed apps below
     'rostermanager',
+    'game',
 ]
 
 MIDDLEWARE = [

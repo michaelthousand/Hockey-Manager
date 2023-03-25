@@ -11,6 +11,16 @@
 {% endblock %}
 
 {% block content %}
+<form method="get">
+    <label for="season">Select a season:</label>
+    <select name="season" id="season-select">
+      {% for season in seasons %}
+        <option value="{{ season.name }}" {% if selected_year == season.name %}selected{% endif %}>{{ season.name }}</option>
+      {% endfor %}
+    </select>
+</form>
+
+
 <button id="save-lineup">Save</button>
 
 
@@ -55,7 +65,7 @@
 
 <ul id="sortable10" class="connectedSortable bench">
     {% for player in object_list|dictsort:"player_num" %}
-    {% if player.position == 'C' and player.on_roster == True %}
+    {% if player.position == 'C' and player.on_roster %}
     <li class="ui-state-default">#{{ player.player_num }} - {{ player.last_name }}</li>
     {% endif %}
 {% endfor %}
@@ -101,6 +111,24 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
 <script src="{% static 'rostermanager/sortable.js' %}"></script>
+
+<script>
+    $('#lineup-form').submit(function(e) {
+      e.preventDefault();
+      var form_data = $(this).serializeArray();
+      $.ajax({
+        type: 'POST',
+        url: '{% url "lineup" %}',
+        data: form_data,
+        success: function(response) {
+          alert('Lineup updated successfully!');
+        },
+        error: function(xhr, status, error) {
+          alert('An error occurred while updating the lineup.');
+        }
+      });
+    });
+  </script>
 
 <!--To save the lineup - don't know if it will work but will need to see when site is live -->
 <script>
@@ -153,6 +181,30 @@
                 console.log(xhr.responseText);
             }
         });
+    }
+    </script>
+
+<script>
+    const select = document.querySelector('#season-select');
+    const heading = document.querySelector('#roster-heading');
+    
+    select.addEventListener('change', (event) => {
+      const selectedYear = event.target.value;
+      const currentUrl = new URL(window.location.href);
+      currentUrl.searchParams.set('season', selectedYear);
+      window.location.href = currentUrl.toString();
+    });
+    
+    
+    // Filter the roster based on the selected year
+    const roster = document.querySelector('#roster');
+    if (selectedYear) {
+      const players = roster.querySelectorAll('.player');
+      for (let player of players) {
+        if (player.dataset.season !== selectedYear) {
+          player.style.display = 'none';
+        }
+      }
     }
     </script>
 

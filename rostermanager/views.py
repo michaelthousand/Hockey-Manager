@@ -20,18 +20,22 @@ class PlayerList(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        season_year = self.request.GET.get('season', '2022-23')
-        if season_year:
-            queryset = queryset.filter(user=self.request.user)
-            queryset = queryset.filter(season__year=season_year)
-        return queryset
-    
+
+        # Get the 'season' GET parameter and set the selected year accordingly
+        selected_year = self.request.GET.get('season', '2022-23 Season') # set a default value
+        if selected_year:
+            queryset = queryset.filter(season__name=selected_year)
+
+        return queryset.order_by('last_name')
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['seasons'] = Season.objects.all()
         season_year = self.request.GET.get('season')
         if season_year:
             context['selected_year'] = season_year
+        else:
+            context['selected_year'] = '2022-23 Season' # set a default value
         return context
 
 # Allows the user to add new players
@@ -83,16 +87,41 @@ def add_season(request):
     return render(request, 'rostermanager/add_season.html', {'form': form})
 
 # Lineup view
-class viewlineup(LoginRequiredMixin, ListView):
+class ViewLineup(LoginRequiredMixin, ListView):
     model = Player
-    template_name="rostermanager/lineup.html"
-    context_object_name = 'players'
-    empty_message = 'No data available'
+    template_name = "rostermanager/lineup.html"
+    context_object_name = "players"
+    empty_message = "No data available"
 
     def get_queryset(self):
         queryset = super().get_queryset()
         queryset = queryset.filter(user=self.request.user)
-        return queryset
+        # Get the 'season' GET parameter and set the selected year accordingly
+        selected_year = self.request.GET.get("season", "2022-23 Season")  # set a default value
+        if selected_year:
+            queryset = queryset.filter(season__name=selected_year)
+        print(queryset)
+        return queryset.order_by("last_name")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["seasons"] = Season.objects.all()
+        season_year = self.request.GET.get("season")
+        if season_year:
+            context["selected_year"] = season_year
+        else:
+            context["selected_year"] = "2022-23 Season"  # set a default value
+        return context
+
+    def post(self, request, *args, **kwargs):
+        player_ids = request.POST.getlist("player_ids[]")
+        new_positions = request.POST.getlist("new_positions[]")
+        for i in range(len(player_ids)):
+            player = Player.objects.get(id=player_ids[i])
+            player.position = new_positions[i]
+            player.save()
+        return JsonResponse({"success": True})
+
 
 # To save the lineup - don't know if it will work but will need to see when site is live
 from django.http import JsonResponse

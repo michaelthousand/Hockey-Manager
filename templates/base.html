@@ -10,18 +10,19 @@
         <h1>Hockey Tracker App</h1>
     </div>
     <nav>
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'add_season' %}">New Season</a>
-        <a href="{% url 'roster' %}">Rosters</a>
-        <a href="{% url 'lineup' %}">Lineup</a>
-        <a href="{% url 'roster_notes' %}">Notes</a>
+        <a href="{% url 'home' %}"><button class="button-71" role="button">Home</button></a>
+        <a href="{% url 'add_season' %}"><button class="button-71" role="button">New Season</button></a>
+        <a href="{% url 'roster' %}"><button class="button-71" role="button">Rosters</button></a>
+        <a href="{% url 'lineup' %}"><button class="button-71" role="button">Lineup</button></a>
+        <a href="{% url 'roster_notes' %}"><button class="button-71" role="button">Notes</button></a>
+        <a href="{% url 'live_game' %}"><button class="button-71" role="button">Live Game</button></a>
 
         
         {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'logout' %}"><button class="button-71-reg" role="button">Logout</button></a>
         {% else %}
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'signup' %}">Sign Up</a>
+        <a href="{% url 'login' %}"><button class="button-71-reg" role="button">Login</button></a>
+        <a href="{% url 'signup' %}"><button class="button-71-reg" role="button">Sign Up</button></a>
         {% endif %}
     </nav>
 

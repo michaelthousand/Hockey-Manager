@@ -27,7 +27,7 @@
     <label for="season">Select a season:</label>
     <select name="season" id="season-select">
       {% for season in seasons %}
-        <option value="{{ season.year }}" {% if selected_year == season.year %}selected{% endif %}>{{ season.year }}</option>
+        <option value="{{ season.name }}" {% if selected_year == season.name %}selected{% endif %}>{{ season.name }}</option>
       {% endfor %}
     </select>
 </form>
@@ -44,7 +44,7 @@
         <th>Update</th>
         <th>Remove</th>
     </tr>
-    {% for player in object_list|dictsort:"last_name" %}
+    {% for player in object_list|dictsort:"player_num" %}
         {% if player.position == 'C' and player.on_roster == True or player.position == 'LW' and player.on_roster == True or player.position == 'RW' and player.on_roster == True %}
         <tr>
             <td>{{ player.first_name }} {{ player.last_name }}</td>
@@ -70,7 +70,7 @@
         <th>Update</th>
         <th>Remove</th>
     </tr>
-    {% for player in object_list|dictsort:"last_name" %}
+    {% for player in object_list|dictsort:"player_num" %}
         {% if player.position == 'LD' and player.on_roster == True or player.position == 'RD' and player.on_roster == True %}
         <tr>
             <td>{{ player.first_name }} {{ player.last_name }}</td>
@@ -95,7 +95,7 @@
         <th>Update</th>
         <th>Remove</th>
     </tr>
-    {% for player in object_list|dictsort:"last_name" %}
+    {% for player in object_list|dictsort:"player_num" %}
         {% if player.position == 'G' and player.on_roster == True %}
         <tr>
             <td>{{ player.first_name }} {{ player.last_name }}</td>
@@ -120,7 +120,7 @@
         <th>Update</th>
         <th>Remove</th>
     </tr>
-    {% for player in object_list|dictsort:"last_name" %}
+    {% for player in object_list|dictsort:"player_num" %}
         {% if player.on_roster == False %}
         <tr>
             <td>{{ player.first_name }} {{ player.last_name }}</td>

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+<title>Hockey Tracker - Live Game</title>
+<link rel="stylesheet" href="{% static 'game/game_style.css' %}">
+{% endblock %}
+
+{% block content %}
+  <h2>Live Game Stats</h2>
+  <form method="post">
+    {% csrf_token %}
+    <label for="date">Date:</label>
+    <input type="date" name="date" id="date">
+    <div id="forwards">
+        <label for="forward1">F1:</label>
+        <input type="number" name="forward1" id="forward1">
+        <label for="forward2">F2:</label>
+        <input type="number" name="forward2" id="forward2">
+        <label for="forward3">F3:</label>
+        <input type="number" name="forward3" id="forward3">
+    </div>
+    <div id="defense">
+        <label for="defense1">D1:</label>
+        <input type="number" name="defense1" id="defense1">
+        <label for="defense2">D2:</label>
+        <input type="number" name="defense2" id="defense2">
+    </div>
+    <div id="goalie">
+        <label for="goalie">G:</label>
+        <input type="number" name="goalie" id="goalie">
+        <label for="ext_attacker">Ext.:</label>
+        <input type="number" name="ext_attacker" id="ext_attacker">
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div id="special_teams">
+        <label for="sp_even">5-on-5</label>
+        <input type="radio" id="sp_even" name="special_teams" value="sp_even">
+        <label for="powerplay">Powerplay</label>
+        <input type="radio" id="powerplay" name="special_teams" value="powerplay">
+        <label for="penalty_kill">Penalty Kill</label>
+        <input type="radio" id="penalty_kill" name="special_teams" value="penalty_kill">
+    </div>
+
+    <div id="extra_attacker">
+        <label for="ex_even">No Extra Attackers</label>
+        <input type="radio" id="ex_even" name="extra_attacker" value="ex_even">
+        <label for="ext_for">Extra Attacker For</label>
+        <input type="radio" id="ext_for" name="extra_attacker" value="ext_for">
+        <label for="ext_against">Extra Attacker Against</label>
+        <input type="radio" id="ext_against" name="extra_attacker" value="ext_against">
+    </div>
+
+    <div id="events">
+        <div id="goals">
+            <button type="submit" name="event_type" value="HDGF" id="HDGF">High Danger<br>Goal For</button>
+            <button type="submit" name="event_type" value="LDGF" id="LDGF">Low Danger<br>Goal For</button>
+            <button type="submit" name="event_type" value="HDGA" id="HDGA">High Danger<br>Goal Against</button>
+            <button type="submit" name="event_type" value="LDGA" id="LDGA">Low Danger<br>Goal Against</button>
+        </div>
+        <div id="shots">
+            <button type="submit" name="event_type" value="HDSF" id="HDSF">High Danger<br>Shot For</button>
+            <button type="submit" name="event_type" value="LDSF" id="LDSF">Low Danger<br>Shot For</button>
+            <button type="submit" name="event_type" value="HDSA" id="HDSA">High Danger<br>Shot Against</button>
+            <button type="submit" name="event_type" value="LDSA" id="LDSA">Low Danger<br>Shot Against</button>
+        </div>
+        <div id="missed">
+            <button type="submit" name="event_type" value="MHDSF" id="MHDSF">Missed<br>High Danger<br>Shot For</button>
+            <button type="submit" name="event_type" value="MLDSF" id="MLDSF">Missed<br>Low Danger<br>Shot For</button>
+            <button type="submit" name="event_type" value="MHDSA" id="MHDSA">Missed<br>High Danger<br>Shot Against</button>
+            <button type="submit" name="event_type" value="MLDSA" id="MLDSA">Missed<br>Low Danger<br>Shot Against</button>
+        </div>
+    </div>
+    
+  </form>
+{% endblock %}

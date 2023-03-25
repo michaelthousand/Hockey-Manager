@@ -3,10 +3,12 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Season(models.Model):
-    year = models.CharField(max_length=9)
+    name = models.CharField(max_length=255, default="2022-23 Season")
+    start_date = models.DateField(default='2022-07-01')
+    end_date = models.DateField(default='2023-06-30')
 
     def __str__(self):
-        return self.year
+        return self.name
 
 
 class Player(models.Model):

@@ -12,12 +12,12 @@ class Event(models.Model):
     defense1 = models.CharField(verbose_name='Defense 1:', max_length=2, blank=True, null=True)
     defense2 = models.CharField(verbose_name='Defense 2:', max_length=2, blank=True, null=True)
     goalie = models.CharField(verbose_name='Goalie:', max_length=2, blank=True, null=True)
-    extra_attacker = models.CharField(verbose_name='Ext:', max_length=2, blank=True, null=True)
+    ext_attacker = models.CharField(verbose_name='Ext:', max_length=2, blank=True, null=True)
     
-    powerplay = models.BooleanField(verbose_name='Powerplay:', default=False)
-    penaltykill = models.BooleanField(verbose_name='Penalty Kill:', default=False)
-    extra_for = models.BooleanField(verbose_name='Extra Attacker For:', default=False)
-    extra_against = models.BooleanField(verbose_name='Extra Attacker Against:', default=False)
+    special_teams = models.CharField(max_length=20)
+    
+    extra_attacker = models.CharField(max_length=20)
+    
 
     HDGF = "HDGF"
     LDGF = "LDGF"
@@ -49,6 +49,8 @@ class Event(models.Model):
         (MLDSA, "Missed Low Danger Shot Against"),
     ]
 
-
-    event_type = models.CharField(verbose_name='Event type', max_length=5, choices=EVENT_TYPE)
+    event_type = models.CharField(max_length=5)
     id = models.AutoField(primary_key=True)
+
+    def __str__(self):
+        return f"Date: {self.date}, User: {self.user}\nEvent: {self.event_type}\nSpecial: {self.special_teams}, Extra: {self.extra_attacker}\nPlayers: {self.forward1}, {self.forward2}, {self.forward3}, {self.defense1}, {self.defense2}, {self.goalie}, {self.ext_attacker}"

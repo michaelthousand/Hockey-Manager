@@ -1,0 +1,182 @@
+/* For all pages */
+
+html{
+    font-size: 16px;
+}
+
+body{
+    background-color: #edeeff;
+}
+
+.button-71 {
+    background-color: #0078d0;
+    border: 0;
+    border-radius: 56px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    outline: 0;
+    padding: 16px 21px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+.button-71-reg {
+    background-color: #3f3f52;
+    border: 0;
+    border-radius: 56px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    outline: 0;
+    padding: 16px 21px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-71:before {
+  background-color: initial;
+  background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
+  border-radius: 125px;
+  content: "";
+  height: 50%;
+  left: 4%;
+  opacity: .5;
+  position: absolute;
+  top: 0;
+  transition: all .3s;
+  width: 92%;
+}
+
+.button-71:hover {
+  box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
+  transform: scale(1.05);
+}
+
+@media (min-width: 768px) {
+  .button-71 {
+    padding: 16px 48px;
+  }
+}
+
+/* Begin Unique */
+
+form{
+    text-align: center;
+}
+
+#date{
+    margin-bottom: 40px;
+}
+
+#forwards, #defense, #goalie{
+    margin-bottom: 20px;
+}
+
+#sp_even, #powerplay, #penalty_kill, #ex_even, #ext_for, #ext_against{
+    margin: 30px 50px 40px 5px;
+}
+
+button{
+    padding:40px;
+    margin: 20px 0px;
+    font-size: 1.5rem;
+
+    border-radius: 8px;
+    border-width: 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .1),0 3px 6px rgba(0, 0, 0, .05);
+    box-sizing: border-box;
+    outline: none;
+    overflow: hidden;
+}
+
+button:hover{
+    cursor: pointer;
+    box-shadow: rgba(0, 1, 0, .2) 0 2px 8px;
+    opacity: .85;
+}
+
+.button:focus {
+    box-shadow: rgba(0, 0, 0, .5) 0 0 0 3px;
+  }
+
+#forward1, #forward2, #forward3, #defense1, #defense2, #goalie, #ext_attacker{
+    width:50px;
+    height:40px;
+    display: inline;
+}
+
+#HDGF, #HDGA{
+    background-color: #850801;
+    color:#fff;
+}
+
+#HDSF, #HDSA{
+    background-color: #e36a64;
+    color: #fff;
+}
+
+#MHDSF, #MHDSA{
+    background-color: #fcada9;
+}
+
+#LDGF, #LDGA{
+    background-color: #00047d;
+    color:#fff;
+}
+
+#LDSF, #LDSA{
+    background-color: #5c5fad;
+    color: #fff;
+}
+
+#MLDSF, #MLDSA{
+    background-color: #b4b6fa;
+}
+
+#LDGF, #LDSF, #MLDSF{
+    margin-right: 100px;
+}
+
+label, input{
+    font-size:1.25rem;
+}
+
+#events{
+    margin-bottom: 300px;
+}
+
+#extra_attacker{
+    background-color: #edeeff;
+}
+
+@media only screen and (max-width: 1100px){
+    #LDGF, #LDSF, #MLDSF{
+        margin-right: 0px;
+    }
+
+    #events{
+        display: grid;
+        position: relative;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        width: 65%;
+        margin: auto;
+    }
+}
