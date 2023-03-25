@@ -5,6 +5,7 @@
 
 {% block head %}
 <title>Hockey Manager - Notes</title>
+<link rel="stylesheet" href="{% static 'rostermanager/style.css' %}">
 {% endblock %}
 
 
@@ -14,8 +15,7 @@
 <table>
     {% for note in object_list %}
         <tr>
-            <td>{{ note.date }}</td>
-            <td>{{ note.note }}</td>
+            <td>{{ note.date }} - {{ note.note }}</td>
         </tr>
     {% endfor %}
 </table>

@@ -81,8 +81,13 @@ form{
     text-align: center;
 }
 
-#date{
-    margin-bottom: 40px;
+#top_info{
+    margin-bottom: 100px;
+}
+
+#date, #opponent{
+    margin-right: 30px;
+
 }
 
 #forwards, #defense, #goalie{
@@ -90,7 +95,7 @@ form{
 }
 
 #sp_even, #powerplay, #penalty_kill, #ex_even, #ext_for, #ext_against{
-    margin: 30px 50px 40px 5px;
+    margin: 10px 50px 40px 5px;
 }
 
 button{
@@ -159,11 +164,17 @@ label, input{
 }
 
 #events{
-    margin-bottom: 300px;
+    margin-bottom: 30px;
 }
 
 #extra_attacker{
     background-color: #edeeff;
+}
+
+#last5{
+    text-align: center;
+    margin-bottom: 300px;
+    font-size: 1.25rem;
 }
 
 @media only screen and (max-width: 1100px){

@@ -15,6 +15,30 @@ class Game(models.Model):
     def __str__(self):
         return f"Date: {self.date}, Opponent: {self.opponent}"
 
+class TOI(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    id = models.AutoField(primary_key=True)
+    p1 = models.TimeField(default='00:00')
+    p2 = models.TimeField(default='00:00')
+    p3 = models.TimeField(default='00:00')
+    p4 = models.TimeField(default='00:00')
+    p5 = models.TimeField(default='00:00')
+    p6 = models.TimeField(default='00:00')
+    p7 = models.TimeField(default='00:00')
+    p8 = models.TimeField(default='00:00')
+    p9 = models.TimeField(default='00:00')
+    p10 = models.TimeField(default='00:00')
+    p11 = models.TimeField(default='00:00')
+    p12 = models.TimeField(default='00:00')
+    p13 = models.TimeField(default='00:00')
+    p14 = models.TimeField(default='00:00')
+    p15 = models.TimeField(default='00:00')
+    p16 = models.TimeField(default='00:00')
+    p17 = models.TimeField(default='00:00')
+    p18 = models.TimeField(default='00:00')
+    p19 = models.TimeField(default='00:00')
+    p20 = models.TimeField(default='00:00')
+
 
 
 class Event(models.Model):

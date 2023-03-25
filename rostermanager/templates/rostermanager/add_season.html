@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+<title>Hockey Manager - Add Season</title>
+<link rel="stylesheet" href="{% static 'rostermanager/style.css' %}">
+{% endblock %}
+
 {% block content %}
   <h2>Add a New Season</h2>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Save</button>
+    <button class="button-71"type="submit">Save</button>
   </form>
 {% endblock %}

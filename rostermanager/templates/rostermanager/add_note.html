@@ -1,4 +1,11 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<title>Hockey Manager - Add Note</title>
+<link rel="stylesheet" href="{% static 'rostermanager/style.css' %}">
+{% endblock %}
+
+{% block content %}
 <h2>Add a New Note</h2>
 <form method="post">
   {% csrf_token %}

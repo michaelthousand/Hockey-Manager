@@ -11,8 +11,13 @@
   <h2>Live Game Stats</h2>
   <form method="post">
     {% csrf_token %}
-    <label for="date">Date:</label>
-    <input type="date" name="date" id="date">
+    <div id="top_info">
+        <label for="date">Date:</label>
+        <input type="date" name="date" id="date">
+        <label for="opponent">Opponent:</label>
+        <input type="text" name="opponent" id="opponent">
+        <a href="{% url 'add_toi' %}"><button type="button" class="button-71" name="add_toi" id="add_toi">Add TOI</button></a>
+    </div>
     <div id="forwards">
         <label for="forward1">F1:</label>
         <input type="number" name="forward1" id="forward1">
@@ -76,6 +81,17 @@
             <button type="submit" name="event_type" value="MLDSA" id="MLDSA">Missed<br>Low Danger<br>Shot Against</button>
         </div>
     </div>
-    
   </form>
+  <div id="last5">
+    <ul>
+        {% for event in last_events %}
+        <li>
+          {{ event.event_type }} - {{ event.forward1 }}, {{ event.forward2 }}, {{ event.forward3 }}, {{ event.defense1 }}, {{ event.defense2 }}, {{ event.goalie }}
+          <a href="{% url 'delete_event' event.id %}">Delete</a>
+        </li>
+        {% endfor %}
+      </ul>
+  </div>
+  
+
 {% endblock %}

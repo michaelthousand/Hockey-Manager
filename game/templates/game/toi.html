@@ -10,4 +10,14 @@
 {% block content %}
 <h2>Add Time On Ice</h2>
 
+<form method="post">
+    {% csrf_token %}
+    <label for="date">Date:</label>
+    <input type="date" name="date" id="date">
+    <label for="p1_num">Player 1 #:</label>
+    <input type="number" name="p1_num" id="p1_num">
+    <label for="p1_time">Player 1 #:</label>
+    <input type="time" name="p1_time" id="p1_time" step="1" placeholder="mm:ss">
+    
+</form>
 {% endblock %}
